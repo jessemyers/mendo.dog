@@ -2,4 +2,4 @@
 
 publish = "dist/"
 
-command = "cp src/index.html dist/"
+command = "mkdir dist; cp src/index.html dist/"
