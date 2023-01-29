@@ -1,19 +1,28 @@
 import { Fragment, ReactElement } from "react";
-import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import hero from "./images/emerald highway.jpg";
+import About from './routes/About';
+import Home from './routes/Home';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/about",
+    element: <About />,
+  }
+]);
 
 export default function App(): ReactElement {
+
+
   return (
     <Fragment>
       <CssBaseline />
-      <Container>
-        <img
-          src={hero}
-          alt="Two dogs overlook the forest from the Emerald Highway"
-        />
-      </Container>
+      <RouterProvider router={router} />
     </Fragment>
   );
 }
