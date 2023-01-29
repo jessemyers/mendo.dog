@@ -1,6 +1,6 @@
 import { ReactElement, useEffect, useRef, useState } from "react";
 import { Map, NavigationControl } from "mapbox-gl";
-import 'mapbox-gl/dist/mapbox-gl.css';
+import "mapbox-gl/dist/mapbox-gl.css";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 
@@ -12,7 +12,7 @@ export default function Home(): ReactElement {
   const [longitude, _setLongitude] = useState(-123.7995);
   const [latitude, _setLatitude] = useState(39.3077);
   const [zoom, _setZoom] = useState(13);
-  const style = 'mapbox://styles/mapbox/outdoors-v12'; // mapbox://styles/mapbox/satellite-v9';
+  const style = "mapbox://styles/mapbox/outdoors-v12"; // mapbox://styles/mapbox/satellite-v9';
   /* eslint-enable @typescript-eslint/no-unused-vars */
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function Home(): ReactElement {
 
   return (
     <Container>
-      <Box ref={mapContainer} sx={{ height: 800 }} />
+      <Box ref={mapContainer} sx={{ height: "95vh" }} margin={1} />
     </Container>
   );
 }
