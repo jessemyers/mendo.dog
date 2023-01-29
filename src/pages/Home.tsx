@@ -38,7 +38,7 @@ export default function Home(): ReactElement {
 
   return (
     <Container>
-      <Box ref={mapContainer} sx={{ height: "95vh" }} margin={1} />
+      <Box ref={mapContainer} sx={{ height: "90vh" }} margin={1} />
     </Container>
   );
 }
