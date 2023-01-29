@@ -7,6 +7,7 @@
       "@emotion/styled": "^11.10.5",
       "@mui/icons-material": "^5.11.0",
       "@mui/material": "^5.11.6",
+      "mapbox-gl": "^2.12.0",
       "react": "^18.2.0",
       "react-dom": "^18.2.0",
       "react-router-dom": "^6.8.0",
@@ -29,7 +30,11 @@
       "production": [
          ">0.2%",
          "not dead",
-         "not op_mini all"
+         "not op_mini all",
+         "not safari < 10",
+         "not chrome < 51",
+         "not android < 5",
+         "not ie < 12"
       ],
       "development": [
          "last 1 chrome version",
@@ -39,6 +44,7 @@
    },
    "devDependencies": {
       "@types/jest": "^27.0.1",
+      "@types/mapbox-gl": "^2.7.10",
       "@types/node": "^16.7.13",
       "@types/react": "^18.0.0",
       "@types/react-dom": "^18.0.0",
