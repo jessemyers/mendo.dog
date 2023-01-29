@@ -38,7 +38,7 @@ export default function Home(): ReactElement {
 
   return (
     <Container>
-      <Box ref={mapContainer} sx={{ height: 400 }} />
+      <Box ref={mapContainer} sx={{ height: 800 }} />
     </Container>
   );
 }
