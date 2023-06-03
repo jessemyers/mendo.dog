@@ -1,5 +1,5 @@
 import { ReactElement, useEffect, useRef, useState } from "react";
-import { Map, NavigationControl } from "mapbox-gl";
+import { GeolocateControl, Map, NavigationControl } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -32,6 +32,7 @@ export default function Home(): ReactElement {
       zoom: zoom,
     });
     mapbox.addControl(new NavigationControl());
+    mapbox.addControl(new GeolocateControl());
 
     map.current = mapbox;
   });
