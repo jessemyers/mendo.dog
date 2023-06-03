@@ -32,7 +32,12 @@ export default function Home(): ReactElement {
       zoom: zoom,
     });
     mapbox.addControl(new NavigationControl());
-    mapbox.addControl(new GeolocateControl());
+    mapbox.addControl(new GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: true,
+    }));
 
     map.current = mapbox;
   });
