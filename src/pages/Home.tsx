@@ -9,9 +9,13 @@ import {
 import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 import "maplibre-gl/dist/maplibre-gl.css";
 import Box from "@mui/material/Box";
+import Chip from "@mui/material/Chip";
 import Container from "@mui/material/Container";
+import CloudOffIcon from "@mui/icons-material/CloudOff";
 
 import SaveAreaButton from "../components/SaveAreaButton";
+import SearchBox from "../components/SearchBox";
+import useOnline from "../hooks/useOnline";
 import { loadStyle } from "../map/style";
 
 setWorkerUrl(workerUrl);
@@ -23,6 +27,7 @@ const START_ZOOM = 14;
 export default function Home(): ReactElement {
   const mapContainer = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<Map | null>(null);
+  const online = useOnline();
 
   useEffect(() => {
     let cancelled = false;
@@ -63,7 +68,21 @@ export default function Home(): ReactElement {
     <Container>
       <Box sx={{ position: "relative", m: 1 }}>
         <Box ref={mapContainer} sx={{ height: "90vh" }} />
-        {map && <SaveAreaButton map={map} />}
+        {map && online && (
+          <>
+            <SearchBox map={map} />
+            <SaveAreaButton map={map} />
+          </>
+        )}
+        {!online && (
+          // Search and saving need a connection; only saved areas draw.
+          <Chip
+            icon={<CloudOffIcon />}
+            label="Offline: showing saved areas"
+            color="warning"
+            sx={{ position: "absolute", top: 10, left: 10, zIndex: 1 }}
+          />
+        )}
       </Box>
     </Container>
   );

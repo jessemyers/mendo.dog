@@ -35,7 +35,7 @@ There are no tests and no `test` script yet.
 
 ### Map style and data sources
 
-- `src/map/style.ts` fetches the OpenGIS "outdoors" style (github.com/OpenGIS/outdoors) from jsDelivr, pinned to a commit. It is loaded at runtime, not copied into the repo, because that repo has no license. At load time it removes the Esri satellite layer and 3D terrain.
+- `src/map/style.ts` fetches the OpenGIS "outdoors" style (github.com/OpenGIS/outdoors) from jsDelivr, pinned to a commit. It is loaded at runtime, not copied into the repo, because that repo has no license. At load time it removes the Esri satellite layer and 3D terrain, and makes park/protected-area boundaries thin and faint with names along each line (`tuneParkBoundaries`). Layer tweaks go there, by layer id.
 - Sources in that style: OpenFreeMap base tiles (source id `openmaptiles`, max zoom 14, all trails from zoom 14), plus OpenGIS extras from `tile.ogis.app` (trails at zoom 9–13, contours, POIs) and Mapterhorn elevation (hillshade). Contours are metric only.
 
 ### Offline
@@ -43,3 +43,11 @@ There are no tests and no `test` script yet.
 - Only OpenFreeMap tiles are saved for offline use. Its owner confirmed the public instance has no usage restrictions. `tile.ogis.app` and Mapterhorn have no stated usage policy, so they stay online only: do not prefetch or cache them.
 - `src/sw.ts` (Workbox, built by `vite-plugin-pwa` in `injectManifest` mode) precaches the app, caches the style/sprites/fonts, and serves OpenFreeMap tiles stale-while-revalidate. Tile cache keys drop the version segment (`/planet/<version>/z/x/y.pbf` → `/planet/z/x/y.pbf`) so saved tiles still match after OpenFreeMap publishes a new version (about weekly).
 - "Save area" (`src/components/SaveAreaButton.tsx`, `src/map/offline.ts`) fetches every base tile for the visible bounds at zooms 10–14, plus label font ranges, through the service worker, which stores them. Zooms above 14 reuse zoom 14 tiles.
+
+### Search
+
+- `src/components/SearchBox.tsx` and `src/map/search.ts` use Nominatim (OpenStreetMap's free search service). Its policy allows at most 1 request per second and forbids search-as-you-type, so search runs only on submit, requests are spaced 1 second apart, and results are kept in memory. Results near the current view rank higher (`viewbox`), but places anywhere can be found. Search needs a signal; it is not cached offline.
+
+### Offline indicator
+
+- `src/hooks/useOnline.ts` wraps `navigator.onLine`. When it is false, `Home.tsx` hides search and Save area and shows an "Offline" chip. `onLine` being true only means a network is connected, not that the internet is reachable, so code must still handle failed requests.

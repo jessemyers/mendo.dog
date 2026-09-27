@@ -65,7 +65,7 @@ export default function SaveAreaButton({ map }: { map: Map }): ReactElement {
         size="small"
         startIcon={<DownloadForOfflineIcon />}
         onClick={open}
-        sx={{ position: "absolute", top: 10, left: 10, zIndex: 1 }}
+        sx={{ position: "absolute", top: 60, left: 10, zIndex: 1 }}
       >
         Save area
       </Button>
@@ -91,7 +91,9 @@ export default function SaveAreaButton({ map }: { map: Map }): ReactElement {
           )}
           {step.name === "not-ready" && (
             <DialogContentText>
-              Offline saving isn't ready yet. Reload the page and try again.
+              {import.meta.env.DEV
+                ? "Offline saving only works in the production build. Run yarn build, then yarn preview."
+                : "Offline saving isn't ready yet. Reload the page and try again."}
             </DialogContentText>
           )}
           {step.name === "saving" && (
