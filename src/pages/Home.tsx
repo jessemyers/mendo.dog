@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 
 export default function Home(): ReactElement {
-  const mapContainer = useRef(null);
+  const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<Map | null>(null);
 
   /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -24,7 +24,7 @@ export default function Home(): ReactElement {
     }
 
     const mapbox = new Map({
-      accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
+      accessToken: import.meta.env.REACT_APP_MAPBOX_TOKEN,
       attributionControl: false,
       center: [longitude, latitude],
       container: mapContainer.current,
@@ -32,19 +32,21 @@ export default function Home(): ReactElement {
       zoom: zoom,
     });
     mapbox.addControl(new NavigationControl());
-    mapbox.addControl(new GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true
-      },
-      trackUserLocation: true,
-    }));
+    mapbox.addControl(
+      new GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true,
+        },
+        trackUserLocation: true,
+      }),
+    );
 
     map.current = mapbox;
   });
 
   return (
     <Container>
-      <Box ref={mapContainer} sx={{ height: "90vh" }} margin={1} />
+      <Box ref={mapContainer} sx={{ height: "90vh", m: 1 }} />
     </Container>
   );
 }

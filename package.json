@@ -1,53 +1,39 @@
 {
-   "name": "mendo.dog",
-   "version": "0.1.0",
-   "private": true,
-   "dependencies": {
-      "@emotion/react": "^11.10.5",
-      "@emotion/styled": "^11.10.5",
-      "@mui/icons-material": "^5.11.0",
-      "@mui/material": "^5.11.6",
-      "mapbox-gl": "^2.12.0",
-      "react": "^18.2.0",
-      "react-dom": "^18.2.0",
-      "react-router-dom": "^6.8.0",
-      "react-scripts": "5.0.1",
-      "typescript": "^4.4.2"
-   },
-   "scripts": {
-      "start": "react-scripts start",
-      "build": "react-scripts build",
-      "format": "prettier --write src; eslint --cache --fix src",
-      "lint": "prettier --check src; eslint --cache src"
-   },
-   "eslintConfig": {
-      "extends": [
-         "react-app",
-         "react-app/jest"
-      ]
-   },
-   "browserslist": {
-      "production": [
-         ">0.2%",
-         "not dead",
-         "not op_mini all",
-         "not safari < 10",
-         "not chrome < 51",
-         "not android < 5",
-         "not ie < 12"
-      ],
-      "development": [
-         "last 1 chrome version",
-         "last 1 firefox version",
-         "last 1 safari version"
-      ]
-   },
-   "devDependencies": {
-      "@types/jest": "^27.0.1",
-      "@types/mapbox-gl": "^2.7.10",
-      "@types/node": "^16.7.13",
-      "@types/react": "^18.0.0",
-      "@types/react-dom": "^18.0.0",
-      "prettier": "^2.8.3"
-   }
+  "name": "mendo.dog",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "yarn@4.18.0",
+  "scripts": {
+    "start": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "format": "prettier --write src; eslint --cache --fix src",
+    "lint": "prettier --check src; eslint --cache src"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^9.4.0",
+    "@mui/material": "^9.4.0",
+    "mapbox-gl": "^3.31.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-router": "^8.4.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "eslint": "^10.11.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.12.0",
+    "prettier": "^3.9.9",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.70.1",
+    "vite": "^8.3.1"
+  }
 }
